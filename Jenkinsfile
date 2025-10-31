@@ -2,19 +2,35 @@ pipeline {
     agent any
 
     stages {
+        stage('Init') {
+            steps {
+                script {
+                    utils = load 'jenkins/pipeline_utils.groovy'
+                }
+            }
+        }
+
         stage('Build') {
             steps {
-                echo 'Building..'
+                script {
+                    utils.buildApp()
+                }
             }
         }
+
         stage('Test') {
             steps {
-                echo 'Testing..'
+                script {
+                    utils.runTest()
+                }
             }
         }
+
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                script {
+                    utils.deploy()
+                }
             }
         }
     }
