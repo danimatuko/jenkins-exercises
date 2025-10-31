@@ -1,3 +1,5 @@
+def utils // declare globally
+
 pipeline {
     agent any
 
@@ -5,7 +7,7 @@ pipeline {
         stage('Init') {
             steps {
                 script {
-                    utils = load 'jenkins/pipeline_utils.groovy'
+                   utils = load 'jenkins/pipeline-utils.groovy'
                 }
             }
         }

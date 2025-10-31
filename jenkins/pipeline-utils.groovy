@@ -1,8 +1,8 @@
-def buildpp() {
+def buildApp() {
     echo '🏗️ Building the application...'
 }
 
-def runTests() {
+def runTest() {
     echo '🧪 Running tests...'
 }
 
