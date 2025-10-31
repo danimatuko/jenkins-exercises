@@ -1,11 +1,20 @@
-def buildApp() {
-    echo '🏗️ Building the application...'
-    sh "docker build -t node-app:latest ."
+def installDependencies() {
+    dir('app') {
+        echo "📦 Installing dependencies..."
+        sh 'npm install'
+    }
 }
 
 def runTest() {
-    echo '🧪 Running tests...'
-    sh "npm run test"
+    dir('app') {
+        echo "🧪 Running tests..."
+        sh 'npm test'
+    }
+}
+
+def buildApp() {
+    echo '🏗️ Building the application...'
+    sh "docker build -t node-app:latest ."
 }
 
 def deploy() {

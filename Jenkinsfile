@@ -1,21 +1,25 @@
-def utils // declare globally
+def utils // global declaration
 
 pipeline {
     agent any
+
+    tools {
+        nodejs "NodeJS"
+    }
 
     stages {
         stage('Init') {
             steps {
                 script {
-                   utils = load 'jenkins/pipeline-utils.groovy'
+                    utils = load 'jenkins/pipeline-utils.groovy'
                 }
             }
         }
 
-        stage('Build') {
+        stage('Install Dependencies') {
             steps {
                 script {
-                    utils.buildApp()
+                    utils.installDependencies()
                 }
             }
         }
@@ -24,6 +28,14 @@ pipeline {
             steps {
                 script {
                     utils.runTest()
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                script {
+                    utils.buildApp()
                 }
             }
         }
