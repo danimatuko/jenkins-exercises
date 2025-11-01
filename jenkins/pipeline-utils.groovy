@@ -12,9 +12,19 @@ def runTest() {
     }
 }
 
+def incrementVersion(){
+    dir('app') {
+        sh 'npm version patch'
+    }
+} 
+
 def buildApp() {
+    def packageJson = readJSON file: 'package.json'
+    env.APP_VERSION = packageJson.version
+
     echo '🏗️ Building the application...'
-    sh "docker build -t node-app:latest ."
+    echo "Building version: ${env.APP_VERSION}"
+    sh "docker build -t node-app:${env.APP_VERSION} ."
 }
 
 def deploy() {
