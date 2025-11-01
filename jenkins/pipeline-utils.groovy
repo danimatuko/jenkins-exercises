@@ -18,6 +18,8 @@ def incrementVersion(){
 
         def packageJson = readJSON file: 'package.json'
         env.APP_VERSION = packageJson.version
+
+        echo "New version: ${env.APP_VERSION}"
     }
 } 
 
