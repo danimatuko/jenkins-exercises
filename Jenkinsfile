@@ -34,7 +34,9 @@ pipeline {
 
         stage('increment version'){
             steps {
-                utils.incrementVersion()
+                script {
+                    utils.incrementVersion()
+                }
             }
         }
 
