@@ -25,14 +25,17 @@ def buildApp() {
     sh "docker build -t node-app:${env.APP_VERSION} -t node-app:latest ."
 }
 
+
 def deploy() {
     echo "🚀 Deploying app..."
-    // Stop/remove old container, then run new one
+    // Stop and remove old container, then run the latest
     sh '''
     docker stop my-node-app || true
     docker rm my-node-app || true
     docker run -d -p 3000:3000 --name my-node-app node-app:latest
+    echo "✅ Deployment successful! App is running on port 3000."
     '''
 }
+
 
 return this
