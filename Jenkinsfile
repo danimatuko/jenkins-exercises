@@ -1,4 +1,4 @@
-@Library('jenkins-exercises-shared-lib') _
+@Library('jenkins-exercises-shared-lib')_
 
 def utils // global declaration
 
