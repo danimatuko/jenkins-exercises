@@ -1,3 +1,5 @@
+@Library('jenkins-exercises-shared-lib') _
+
 def utils // global declaration
 
 pipeline {
@@ -8,6 +10,12 @@ pipeline {
     }
 
     stages {
+        stage('Test Shared Lib') {
+            steps {
+                logMessage('This is a test message to test the shared library integration')
+            }
+        }
+
         stage('Init') {
             steps {
                 script {
