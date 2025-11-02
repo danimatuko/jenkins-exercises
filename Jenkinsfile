@@ -1,7 +1,5 @@
 @Library('jenkins-exercises-shared-lib')_
 
-def utils // global declaration
-
 pipeline {
     agent any
 
@@ -10,65 +8,45 @@ pipeline {
     }
 
     stages {
-        stage('Test Shared Lib') {
+        stage('Test Shared Library') {
             steps {
-                logMessage('This is a test message to test the shared library integration')
-            }
-        }
-
-        stage('Init') {
-            steps {
-                script {
-                    utils = load 'jenkins/pipeline-utils.groovy'
-                }
+                logMessage("This is a test message to verify shared library integration")
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                script {
-                    utils.installDependencies()
-                }
+                installDependencies()
             }
         }
 
-        stage('Test') {
+        stage('Run Tests') {
             steps {
-                script {
-                    utils.runTest()
-                }
+                runTests()
             }
         }
 
-        stage('increment version'){
+        stage('Increment Version') {
             steps {
-                script {
-                    utils.incrementVersion()
-                }
+                incrementVersion()
             }
         }
 
         stage('Build') {
             steps {
-                script {
-                    utils.buildApp()
-                }
+                buildApp()
             }
         }
 
         stage('Commit Version Change') {
             steps {
-                script {
-                    utils.commitVersionChange()
-                }
+                commitVersionChange()
             }
         }
 
         stage('Deploy') {
             steps {
-                script {
-                    utils.deploy()
-                }
+                deployApp()
             }
         }
     }
