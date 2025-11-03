@@ -8,12 +8,6 @@ pipeline {
     }
 
     stages {
-        stage('Test Shared Library') {
-            steps {
-                logMessage("This is a test message to verify shared library integration")
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 installDependencies()
